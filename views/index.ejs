@@ -1,0 +1,91 @@
+<% include partials/header.ejs %>
+
+<!-- Masthead -->
+<header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+
+        <!-- Masthead Avatar Image -->
+        <img class="masthead-avatar mb-5 rounded-circle" src="https://i.pinimg.com/564x/36/89/43/36894377a3033d68513e45a0c1c099f3.jpg">
+
+        <!-- Masthead Heading -->
+        <h1 class="masthead-heading text-uppercase mb-0">Anonymous</h1>
+
+        <!-- Icon Divider -->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon">
+                <i class="fas fa-star"></i>
+            </div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <!-- Masthead Subheading -->
+        <p class="masthead-subheading font-weight-light mb-0">Graphic Artist - Web Designer - Photgrapher</p>
+
+    </div>
+</header>
+
+<!-- Portfolio Section -->
+<section class="page-section portfolio" id="portfolio">
+    <div class="container">
+
+        <!-- Portfolio Section Heading -->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
+
+        <!-- Icon Divider -->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon">
+                <i class="fas fa-star"></i>
+            </div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <!-- Portfolio Grid Items -->
+        <div class="row">
+
+            <% portfolio.forEach((folio) => { %>
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-item mx-auto">
+                        <h3 class="text-center text-capitalize text-secondary"><%= folio.title %></h3>
+                        <a href="/details/<%= folio.id %>"><img class="img-fluid" src="/images/portfolio/<%= folio.image1 %>"></a>
+                    </div>
+                </div>
+            <% }) %>
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="page-section bg-primary text-white mb-0" id="about">
+    <div class="container">
+
+        <!-- About Section Heading -->
+        <h2 class="page-section-heading text-center text-uppercase text-white">About the Stack</h2>
+
+        <!-- Icon Divider -->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon">
+                <i class="fas fa-star"></i>
+            </div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <!-- About Section Content -->
+        <div class="row">
+            <div class="col-lg-4 ml-auto">
+                <p class="lead">We used MEN Stack, MEN stand for MySql Express.js Node.js and the dependency we used express-fileupload, body-parser, express-session, and ejs as view engine. We choosed Boostrap for design the UI</p>
+            </div>
+            <div class="col-lg-4 mr-auto">
+                <p class="lead">This Photography Portfolio App can add a portfolio with 3 images, title and description. Also you can delete the portfolio or edit it. Thank You</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<% include partials/footer.ejs %>
