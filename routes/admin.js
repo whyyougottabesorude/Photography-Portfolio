@@ -77,7 +77,7 @@ router.post('/add', (req, res, next) => {
 
 router.get('/edit/:id', (req, res, next) => {
     if(req.session.loggedin) {
-        connection.query('SELECT * FROM portfolio WHERE id = ?', req.params.id, (err, rows, fields) => {
+        connection.query(`SELECT * FROM portfolio WHERE id = ? ${req.params.id}`, (err, rows, fields) => {
             if (err) throw err
             res.render('admin/edit', {
                 'portfolio': rows[0]
