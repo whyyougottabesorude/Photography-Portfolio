@@ -23,7 +23,11 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/login', (req, res, next) => {
-    res.render('login')
+    if (req.session.loggedin) {
+        res.redirect('/admin')
+    } else {
+        res.render('login')
+    }
 })
 
 router.post('/login', (req, res, next) => {
@@ -41,6 +45,11 @@ router.post('/login', (req, res, next) => {
 	} else {
 		res.render('login')
 	}
+})
+
+router.get('/logout', (req, res, next) => {
+    req.session.loggedin = false;
+    res.redirect('/')
 })
 
 router.get('/add', (req, res, next) => {
