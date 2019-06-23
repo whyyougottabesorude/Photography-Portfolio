@@ -3,10 +3,10 @@ const express = require('express'),
     mysql = require('mysql')
 
 const connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
+    host     : 'db4free.net',
+    user     : 'yossan2019',
     password : 'inyourdream',
-    database : 'fpwp'
+    database : 'fpwp2019'
 })
 
 router.get('/', (req, res, next) => {
