@@ -28,4 +28,4 @@ app.use('/', routes)
 app.use('/admin', admin)
 
 
-app.listen(port, () => console.log(`Up on port ${port}...`))
+app.listen(port, process.env.IP, () => console.log(`Up on port ${port}...`))
