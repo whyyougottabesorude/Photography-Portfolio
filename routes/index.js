@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/details/:id', (req, res, next) => {
-    connection.query(`SELECT * FROM portfolio WHERE id = ? ${req.params.id}`, (err, rows, fields) => {
+    connection.query(`SELECT * FROM portfolio WHERE id = ${req.params.id}`, (err, rows, fields) => {
         if (err) throw err
         res.render('details', {
             'portfolio': rows[0] 

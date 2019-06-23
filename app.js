@@ -6,6 +6,7 @@ const express = require('express'),
     session = require('express-session'),
     upload = require('express-fileupload'),
     port = process.env.PORT || 3000,
+    ip = process.env.IP,
     routes = require('./routes/index'),
     admin = require('./routes/admin')
 
@@ -28,4 +29,4 @@ app.use('/', routes)
 app.use('/admin', admin)
 
 
-app.listen(port, process.env.IP, () => console.log(`Up on port ${port}...`))
+app.listen(port, ip, () => console.log(`Up on port ${port}...`))
