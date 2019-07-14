@@ -1,25 +1,29 @@
 const express = require('express'),
     router = express.Router(),
-    mysql = require('mysql')
+    mysql = require('mysql'),
+    {
+        check,
+        validationResult
+    } = require('express-validator');
 
 const connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'inyourdream',
-    database : 'fpwp'
+    host: 'localhost',
+    user: 'root',
+    password: 'inyourdream',
+    database: 'fpwp'
 })
 
 router.get('/', (req, res, next) => {
     if (req.session.loggedin) {
         connection.query('SELECT * FROM portfolio', (err, rows, fields) => {
             if (err) throw err
-            res.render('admin/index',{
+            res.render('admin/index', {
                 'portfolio': rows
             })
         })
-	} else {
-		res.redirect('/admin/login')
-	}
+    } else {
+        res.redirect('/admin/login')
+    }
 })
 
 router.get('/login', (req, res, next) => {
@@ -31,20 +35,20 @@ router.get('/login', (req, res, next) => {
 })
 
 router.post('/login', (req, res, next) => {
-	const username = req.body.username
-	const password = req.body.password
-	if (username && password) {
-		connection.query('SELECT * FROM admin WHERE username = ? AND password = ?', [username, password], (err, results, fields) => {
-			if (results.length > 0) {
-				req.session.loggedin = true
-				res.redirect('/admin')
-			} else {
-				res.render('login')
-			}
-		})
-	} else {
-		res.render('login')
-	}
+    let username = req.body.username
+    let password = req.body.password
+    if (username && password) {
+        connection.query('SELECT * FROM admin WHERE username = ? AND password = ?', [username, password], (err, results, fields) => {
+            if (results.length > 0) {
+                req.session.loggedin = true
+                res.redirect('/admin')
+            } else {
+                res.render('login')
+            }
+        })
+    } else {
+        res.render('login')
+    }
 })
 
 router.get('/logout', (req, res, next) => {
@@ -53,14 +57,22 @@ router.get('/logout', (req, res, next) => {
 })
 
 router.get('/add', (req, res, next) => {
-    if(req.session.loggedin) {
+    if (req.session.loggedin) {
         res.render('admin/add')
     } else {
         res.redirect('/admin/login')
     }
 })
 
-router.post('/add', (req, res, next) => {
+router.post('/add', [
+    check('title').isAlpha().withMessage('Must be only alphabetical chars')
+], (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({
+            errors: errors.array()
+        });
+    }
     let title = req.body.title,
         description = req.body.description,
         image1 = req.files.image1.name,
@@ -85,7 +97,7 @@ router.post('/add', (req, res, next) => {
 })
 
 router.get('/edit/:id', (req, res, next) => {
-    if(req.session.loggedin) {
+    if (req.session.loggedin) {
         connection.query(`SELECT * FROM portfolio WHERE id = ? ${req.params.id}`, (err, rows, fields) => {
             if (err) throw err
             res.render('admin/edit', {
@@ -126,7 +138,7 @@ router.get('/delete/:id', (req, res, next) => {
 })
 
 router.delete('/delete/:id', (req, res, next) => {
-    
+
     connection.query(`DELETE FROM portfolio WHERE id = ${req.params.id}`, err => {
         if (err) throw err
     })

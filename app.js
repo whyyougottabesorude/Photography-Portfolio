@@ -17,8 +17,11 @@ app.use(session({
 }))
 
 app.use(upload())
+app.use(expressValidator())
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
 app.use(bodyParser.json())
 
 app.use(express.static('public'))
