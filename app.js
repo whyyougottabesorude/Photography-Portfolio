@@ -7,6 +7,7 @@ const express = require('express'),
     upload = require('express-fileupload'),
     port = process.env.PORT || 3000,
     ip = process.env.IP,
+    expressValidator = require('express-validator'),
     routes = require('./routes/index'),
     admin = require('./routes/admin')
 
