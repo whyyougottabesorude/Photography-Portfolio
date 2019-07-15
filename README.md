@@ -28,7 +28,7 @@ PRIMARY KEY (`id`)
 
 - Add an admin
 ```sh
-INSERT INTO admin
+INSERT INTO admin (username, password)
 VALUES
 ('admin', 'admin')
 ```
