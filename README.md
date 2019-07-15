@@ -47,9 +47,15 @@ PRIMARY KEY (`id`)
 );
 ```
 
-### Run the app
+# Using the app
 Finally after setup all stuff above, you can run it in your localhost
+
+### Run the up in the air
 ```sh
 node app.js
 ```
 It will automatically run in localhost with port 3000 (localhost:3000)
+
+### Add a portfolio
+You can access route ```/admin```, and it will redirect to ```/login```. Just login and you will be able to Add, Delete, Edit the portfolio
+
