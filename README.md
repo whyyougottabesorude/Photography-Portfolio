@@ -1,7 +1,7 @@
 # Photography Portfolio
 This app using MEN stack, MySQL as database, Express.js as web application framework, and Node.js as runtime environment
 
-# Prepare to Battle
+## Prepare to Battle
 Make sure you already have Node.js and MySQL in your local machine
 
 ### Install Depedency in package.json
@@ -47,10 +47,10 @@ PRIMARY KEY (`id`)
 );
 ```
 
-# Using the app
+## Using the app
 Finally after setup all stuff above, you can run it in your localhost
 
-### Run the up in the air
+### Run the app in the air
 ```sh
 node app.js
 ```
