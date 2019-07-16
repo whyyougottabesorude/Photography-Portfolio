@@ -2,7 +2,7 @@
 This app using MEN stack, MySQL as database, Express.js as web application framework, and Node.js as runtime environment
 
 ## Prepare to Battle
-Make sure you already have Node.js and MySQL in your local machine
+Make sure you already have Node.js and MySQL in your local machine and then clone the repo.
 
 ### Install Depedency in package.json
 ```sh
@@ -30,7 +30,7 @@ PRIMARY KEY (`id`)
 ```sh
 INSERT INTO admin (username, password)
 VALUES
-('admin', 'admin')
+('admin', 'admin');
 ```
 
 - Create portfolio table
